@@ -79,15 +79,16 @@ vboxmanage storageattach $nom_maq --storagectl "SATA Controller" --port 0 --devi
 vboxmanage storagectl $nom_maq --name "IDE Controller" --add ide;
 
 # Le indicamos a nuestra VM que agregaremos el iso para que arranque con el.
+vboxmanage storageattach $nom_maq --storagectl "IDE Controller" --port 1 --device 0 --type dvddrive --medium $iso_ruta;
 # Para desmontar la iso
 #vboxmanage storageattach $nom_maq --storagectl "IDE Controller" --port 1 --device 0 --type dvddrive --medium none;
-vboxmanage storageattach $nom_maq --storagectl "IDE Controller" --port 1 --device 0 --type dvddrive --medium $iso_ruta;
 
 
 
-# En caso de querer administrar nuestra VM desde utilizando una conexión remota
-# es posible activar la bandera de vrde, que es un parámetro de Vbox que lo permite
-# haciéndo uso de un servidor RDP.
+
+# En caso de querer administrar nuestra VM utilizando una conexión remota
+# es posible activar la bandera de vrde, que es un parámetro de Vbox que permite
+# administrar la máquina virtual con utilizando el protocolo RDP.
 
 if [ $vrde_status == true ];
 then
